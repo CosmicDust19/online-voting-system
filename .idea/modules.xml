@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ovs-client/ovs-client.iml" filepath="$PROJECT_DIR$/ovs-client/ovs-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ovs-database/ovs-database.iml" filepath="$PROJECT_DIR$/ovs-database/ovs-database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ovs-server/ovs-server.iml" filepath="$PROJECT_DIR$/ovs-server/ovs-server.iml" />
+    </modules>
+  </component>
+</project>
