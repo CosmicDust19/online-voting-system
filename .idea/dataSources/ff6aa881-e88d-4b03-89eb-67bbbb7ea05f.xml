@@ -138,11 +138,11 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Collation>utf8_general_ci</Collation>
     </schema>
     <schema id="3" parent="1" name="mysql">
-      <Collation>utf8mb4_general_ci</Collation>
+      <Collation>latin1_swedish_ci</Collation>
     </schema>
     <schema id="4" parent="1" name="ovs">
       <Current>1</Current>
-      <Collation>utf8mb4_general_ci</Collation>
+      <Collation>latin1_swedish_ci</Collation>
     </schema>
     <schema id="5" parent="1" name="performance_schema">
       <Collation>utf8_general_ci</Collation>

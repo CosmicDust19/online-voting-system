@@ -1,6 +1,7 @@
 package edu.estu.ovs.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,10 +31,10 @@ public class Certification {
     @JsonIgnore
     private Candidate candidate;
 
-    @Column(name = "name", nullable = false, length = 40)
+    @Column(name = "name", nullable = false, length = Constants.MaxLength.CERT_NAME)
     private String name;
 
-    @Column(name = "description", length = 400)
+    @Column(name = "description", length = Constants.MaxLength.CERT_DESC)
     private String desc;
 
 }

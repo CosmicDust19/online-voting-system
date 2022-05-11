@@ -1,6 +1,7 @@
 package edu.estu.ovs.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,13 +23,13 @@ import java.util.List;
 @OnDelete(action = OnDeleteAction.CASCADE)
 public class Candidate extends User {
 
-    @Column(name = "introduction", length = 1000)
+    @Column(name = "introduction", length = Constants.MaxLength.CANDIDATE_INTRO)
     private String intro;
 
-    @Column(name = "address", nullable = false, length = 400)
+    @Column(name = "address", nullable = false, length = Constants.MaxLength.CANDIDATE_ADDR)
     private String address;
 
-    @Column(name = "nationality_id", nullable = false, length = 11)
+    @Column(name = "nationality_id", nullable = false, length = Constants.MaxLength.NAT_ID)
     @JsonIgnore
     private String natId;
 

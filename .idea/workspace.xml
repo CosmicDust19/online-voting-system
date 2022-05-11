@@ -5,28 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="106bd25a-0134-491b-b95c-e3f699e8e28e" name="Changes" comment="Model Layer">
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 1.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/BIM312 - Phase 2.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/Database Schema.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/ERD.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/Relational Schema.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/1-user.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/10-election_managers.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/11-certification.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/12-school.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/2-user_emails.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/3-user_phone_numbers.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/4-voter.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/5-candidate.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/6-admin.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/7-election.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/8-vote.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/insertions/9-election_candidate.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/procedures.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/addition/separately/schema.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ovs-database/Phase 1 - 2/BIM312 - Phase 2/all-in-one.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/api/controllers/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/api/controllers/CandidateController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/api/controllers/ElectionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/api/controllers/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/api/controllers/VoteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/api/controllers/VoterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/abstracts/AdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/abstracts/CandidateService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/abstracts/ElectionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/abstracts/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/abstracts/VoteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/abstracts/VoterService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/concretes/AdminManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/concretes/CandidateManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/concretes/ElectionManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/concretes/UserManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/concretes/VoteManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/business/concretes/VoterManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/aspects/validation/annotations/Email.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/aspects/validation/validators/EmailValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/config/ModelMapperConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/utilities/MySQLUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/dataAccess/AdminDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/dataAccess/CandidateDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/dataAccess/CertificationDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/dataAccess/ElectionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/dataAccess/SchoolDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/dataAccess/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/dataAccess/VoteDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/dataAccess/VoterDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ff6aa881-e88d-4b03-89eb-67bbbb7ea05f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ff6aa881-e88d-4b03-89eb-67bbbb7ea05f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/OvsServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/OvsServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/utilities/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/utilities/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/utilities/ValidationConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/utilities/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/utilities/filter/request/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/core/utilities/filter/request/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/dtos/CandidateRegDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/dtos/CandidateCrDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/dtos/UserRegDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/dtos/UserCrDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/entities/Candidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/entities/Candidate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/entities/Certification.java" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/entities/Certification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/entities/School.java" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/entities/School.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs/models/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ovs-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ovs-server/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +65,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -80,6 +104,7 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="ExpandSpringBootSpringBootSettingsPanel" value="false" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -90,18 +115,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect" value="MariaDB&#10;MySQL" />
     <property name="jdk.selected.JAVA_MODULE" value="17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ovs-database/Phase 1 - 2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ovs-server/src/main/java/edu/estu/ovs" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.5609195" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
+    <property name="settings.editor.selected.configurable" value="spring.boot" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Recovery\Files\Workfield\DBMS\online-voting-system\ovs-server\src\main\java\edu\estu\ovs" />
       <recent name="D:\Recovery\Files\Workfield\OVS\ovs-server\src\main\java\edu\estu\ovs\core\utilities" />
       <recent name="D:\Recovery\Files\Workfield\OVS" />
       <recent name="D:\Recovery\Files\Workfield\OVS\ovs-server\src\main\java\edu\estu\ovs\dataAccess" />
@@ -118,15 +144,18 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.OvsServerApplication">
-    <configuration name="PopulationInitiator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.estu.ovs.core.populators.PopulationInitiator" />
+    <configuration name="OvsServerApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ovs-server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.estu.ovs.core.populators.*" />
+          <option name="PATTERN" value="edu.estu.ovs.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="edu.estu.ovs" />
+      <option name="MAIN_CLASS_NAME" value="edu.estu.ovs.OvsServerApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -139,7 +168,7 @@
       <option name="SPRING_BOOT_MAIN_CLASS" value="edu.estu.ovs.OvsServerApplication" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SHORTEN_COMMAND_LINE" value="MANIFEST" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -155,14 +184,14 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.PopulationInitiator" />
       <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="JUnit.OvsServerApplicationTests.contextLoads" />
       <item itemvalue="npm.start" />
       <item itemvalue="Spring Boot.OvsServerApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PopulationInitiator" />
+        <item itemvalue="JUnit.OvsServerApplicationTests.contextLoads" />
         <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
@@ -183,6 +212,16 @@
       <workItem from="1651598444434" duration="3762000" />
       <workItem from="1651641924595" duration="13649000" />
       <workItem from="1651734712989" duration="29603000" />
+      <workItem from="1651767477958" duration="269000" />
+      <workItem from="1651816309158" duration="14410000" />
+      <workItem from="1651833275952" duration="4066000" />
+      <workItem from="1651928379368" duration="707000" />
+      <workItem from="1651929208053" duration="276000" />
+      <workItem from="1652170060172" duration="10588000" />
+      <workItem from="1652259590323" duration="1946000" />
+      <workItem from="1652265949986" duration="9814000" />
+      <workItem from="1652289778687" duration="6798000" />
+      <workItem from="1652296907644" duration="1142000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit 🎉">
       <created>1651598053293</created>

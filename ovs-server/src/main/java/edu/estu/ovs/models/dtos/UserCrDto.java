@@ -1,7 +1,7 @@
 package edu.estu.ovs.models.dtos;
 
 import edu.estu.ovs.core.utilities.Msg;
-import edu.estu.ovs.core.utilities.ValidationConstants;
+import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,26 +14,27 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRegDto {
+public class UserCrDto {
 
+    @Email
     @NotBlank(message = Msg.REQUIRED)
-    @Pattern(regexp = ValidationConstants.RegExp.EMAIL, message = Msg.PATTERN)
+    @Pattern(regexp = Constants.RegExp.EMAIL, message = Msg.PATTERN)
     protected String email;
 
     @NotBlank(message = Msg.REQUIRED)
-    @Size(min = ValidationConstants.MinLength.PASSWORD, max = ValidationConstants.MaxLength.PASSWORD, message = Msg.SIZE)
+    @Size(min = Constants.MinLength.PASSWORD, max = Constants.MaxLength.PASSWORD, message = Msg.SIZE)
     protected String password;
 
     @NotBlank(message = Msg.REQUIRED)
-    @Size(min = ValidationConstants.MinLength.F_NAME, max = ValidationConstants.MaxLength.F_NAME, message = Msg.SIZE)
+    @Size(min = Constants.MinLength.F_NAME, max = Constants.MaxLength.F_NAME, message = Msg.SIZE)
     protected String fName;
 
     @NotBlank(message = Msg.REQUIRED)
-    @Size(min = ValidationConstants.MinLength.M_NAME, max = ValidationConstants.MaxLength.M_NAME, message = Msg.SIZE)
+    @Size(min = Constants.MinLength.M_NAME, max = Constants.MaxLength.M_NAME, message = Msg.SIZE)
     protected String mName;
 
     @NotBlank(message = Msg.REQUIRED)
-    @Size(min = ValidationConstants.MinLength.L_NAME, max = ValidationConstants.MaxLength.L_NAME, message = Msg.SIZE)
+    @Size(min = Constants.MinLength.L_NAME, max = Constants.MaxLength.L_NAME, message = Msg.SIZE)
     protected String lName;
 
     @NotNull(message = Msg.REQUIRED)

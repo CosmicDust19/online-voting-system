@@ -2,6 +2,7 @@ package edu.estu.ovs.models.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,20 +31,20 @@ public class User {
     @Column(name = "uid", nullable = false, columnDefinition = "integer")
     protected Integer uid;
 
-    @Column(name = "email", nullable = false, length = 100)
+    @Column(name = "email", nullable = false, length = Constants.MaxLength.EMAIL)
     protected String email;
 
-    @Column(name = "password", nullable = false, length = 100)
+    @Column(name = "password", nullable = false, length = Constants.MaxLength.CODED_PASSWORD)
     @JsonIgnore
     protected String password;
 
-    @Column(name = "f_name", nullable = false, length = 30)
+    @Column(name = "f_name", nullable = false, length = Constants.MaxLength.F_NAME)
     protected String fName;
 
-    @Column(name = "m_name", length = 30)
+    @Column(name = "m_name", length = Constants.MaxLength.M_NAME)
     protected String mName;
 
-    @Column(name = "l_name", nullable = false, length = 30)
+    @Column(name = "l_name", nullable = false, length = Constants.MaxLength.L_NAME)
     protected String lName;
 
     @Column(name = "birth_date", nullable = false, columnDefinition = "date")
@@ -60,7 +61,7 @@ public class User {
     )
     @JoinColumn(name = "uid")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @Column(name = "phone_number", nullable = false, length = 17)
+    @Column(name = "phone_number", nullable = false, length = Constants.MaxLength.PHONE_NUMBER)
     protected Set<String> phoneNumbers;
 
 }

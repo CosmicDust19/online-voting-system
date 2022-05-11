@@ -1,7 +1,7 @@
 package edu.estu.ovs.models.dtos;
 
 import edu.estu.ovs.core.utilities.Msg;
-import edu.estu.ovs.core.utilities.ValidationConstants;
+import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,13 +14,13 @@ import javax.validation.constraints.Pattern;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CandidateRegDto extends UserRegDto {
+public class CandidateCrDto extends UserCrDto {
 
     @NotBlank(message = Msg.REQUIRED)
     private String address;
 
     @NotBlank(message = Msg.REQUIRED)
-    @Pattern(regexp = ValidationConstants.RegExp.NAT_ID, message = Msg.PATTERN + " (It must consist of 11 digits)")
+    @Pattern(regexp = Constants.RegExp.NAT_ID, message = Msg.PATTERN + " (It must consist of 11 digits)")
     private String natId;
 
 }

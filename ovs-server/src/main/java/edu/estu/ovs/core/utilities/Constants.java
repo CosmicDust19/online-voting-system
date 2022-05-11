@@ -1,6 +1,10 @@
 package edu.estu.ovs.core.utilities;
 
-public class ValidationConstants {
+public class Constants {
+
+    public static class Origin {
+        public static final String LOCALHOST_3000 = "http://localhost:3000";
+    }
 
     public static class RegExp {
         public static final String NAT_ID = "\\d{11}";
@@ -22,6 +26,16 @@ public class ValidationConstants {
         public static final int M_NAME = 30;
         public static final int L_NAME = 30;
         public static final int PASSWORD = 25;
+        public static final int CODED_PASSWORD =  100;
+        public static final int CANDIDATE_INTRO = 1000;
+        public static final int CANDIDATE_ADDR = 400;
+        public static final int NAT_ID = 11;
+        public static final int CERT_NAME = 40;
+        public static final int CERT_DESC = 400;
+        public static final int SCH_NAME = 30;
+        public static final int SCH_DEG = 30;
+        public static final int PHONE_NUMBER = 17;
+        public static final int EMAIL = 100;
     }
 
 }

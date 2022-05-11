@@ -1,6 +1,7 @@
 package edu.estu.ovs.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,10 +31,10 @@ public class School {
     @JsonIgnore
     private Candidate candidate;
 
-    @Column(name = "name",nullable = false, length = 30)
+    @Column(name = "name",nullable = false, length = Constants.MaxLength.SCH_NAME)
     private String name;
 
-    @Column(name = "degree", nullable = false, length = 30)
+    @Column(name = "degree", nullable = false, length = Constants.MaxLength.SCH_DEG)
     private String degree;
 
 }
