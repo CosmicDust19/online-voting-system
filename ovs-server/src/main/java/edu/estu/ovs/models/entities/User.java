@@ -1,6 +1,7 @@
 package edu.estu.ovs.models.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -23,7 +23,6 @@ import java.util.Set;
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email", name = "uk_user_email"))
 @Inheritance(strategy = InheritanceType.JOINED)
-@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
@@ -34,7 +33,7 @@ public class User {
     @Column(name = "email", nullable = false, length = Constants.MaxLength.EMAIL)
     protected String email;
 
-    @Column(name = "password", nullable = false, length = Constants.MaxLength.CODED_PASSWORD)
+    @Column(name = "password", nullable = false, length = Constants.MaxLength.CODED_PW)
     @JsonIgnore
     protected String password;
 
@@ -47,9 +46,11 @@ public class User {
     @Column(name = "l_name", nullable = false, length = Constants.MaxLength.L_NAME)
     protected String lName;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "birth_date", nullable = false, columnDefinition = "date")
     protected LocalDate birthDate;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "creation_date", nullable = false, updatable = false, columnDefinition = "date default current_date")
     protected LocalDate creationDate;
 
@@ -61,7 +62,12 @@ public class User {
     )
     @JoinColumn(name = "uid")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @Column(name = "phone_number", nullable = false, length = Constants.MaxLength.PHONE_NUMBER)
+    @Column(name = "phone_number", nullable = false, length = Constants.MaxLength.PHONE_NUM)
     protected Set<String> phoneNumbers;
+
+    @PrePersist
+    public void onPrePersist() {
+        this.creationDate = LocalDate.now();
+    }
 
 }

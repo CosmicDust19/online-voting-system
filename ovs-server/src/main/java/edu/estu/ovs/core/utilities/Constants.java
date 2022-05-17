@@ -18,24 +18,30 @@ public class Constants {
         public static final int F_NAME = 2;
         public static final int M_NAME = 2;
         public static final int L_NAME = 2;
-        public static final int PASSWORD = 6;
+        public static final int PW = 6;
+        public static final int ADDR = 20;
+        public static final int ELECTION_TITLE = 2;
+        public static final int CERT_NAME = 2;
+        public static final int CERT_DESC = 2;
+        public static final int SCH_NAME = 2;
     }
 
     public static class MaxLength {
         public static final int F_NAME = 30;
         public static final int M_NAME = 30;
         public static final int L_NAME = 30;
-        public static final int PASSWORD = 25;
-        public static final int CODED_PASSWORD =  100;
+        public static final int PW = 25;
+        public static final int CODED_PW =  100;
         public static final int CANDIDATE_INTRO = 1000;
-        public static final int CANDIDATE_ADDR = 400;
+        public static final int ADDR = 400;
         public static final int NAT_ID = 11;
         public static final int CERT_NAME = 40;
         public static final int CERT_DESC = 400;
         public static final int SCH_NAME = 30;
         public static final int SCH_DEG = 30;
-        public static final int PHONE_NUMBER = 17;
+        public static final int PHONE_NUM = 17;
         public static final int EMAIL = 100;
+        public static final int ELECTION_TITLE = 100;
     }
 
 }

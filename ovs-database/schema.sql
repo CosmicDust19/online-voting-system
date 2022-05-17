@@ -76,6 +76,7 @@ create table election
 (
     eid              integer      not null primary key,
     creator_admin_id integer      not null,
+    title            varchar(100) not null,
     end              timestamp(0) not null default current_timestamp,
     start            timestamp(0) not null default current_timestamp,
     creation_date    date         not null,

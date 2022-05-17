@@ -1,6 +1,6 @@
 package edu.estu.ovs;
 
-import edu.estu.ovs.core.utilities.MySQLUtils;
+import edu.estu.ovs.core.config.MySQLConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OvsServerApplication {
 
     public static void main(String[] args) {
-        MySQLUtils.start();
+        MySQLConfig.start();
         SpringApplication.run(OvsServerApplication.class, args);
     }
 

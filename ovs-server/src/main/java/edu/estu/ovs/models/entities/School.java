@@ -1,7 +1,9 @@
 package edu.estu.ovs.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.estu.ovs.core.utilities.Constants;
+import edu.estu.ovs.core.utilities.Degree;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -25,7 +28,7 @@ public class School {
     @Column(name = "sch_id", nullable = false, columnDefinition = "integer")
     private Integer schId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "candidate_id", nullable = false, columnDefinition = "integer", foreignKey = @ForeignKey(name = "fk_candidate_schools_candidate_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
@@ -35,6 +38,6 @@ public class School {
     private String name;
 
     @Column(name = "degree", nullable = false, length = Constants.MaxLength.SCH_DEG)
-    private String degree;
+    private Degree degree;
 
 }

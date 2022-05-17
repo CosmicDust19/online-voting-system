@@ -1,6 +1,7 @@
 package edu.estu.ovs.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,12 +22,13 @@ import java.util.List;
 @Table(name = "candidate", uniqueConstraints = @UniqueConstraint(columnNames = "nationality_id", name = "uk_candidate_nationality_id"))
 @PrimaryKeyJoinColumn(name = "uid", referencedColumnName = "uid", foreignKey = @ForeignKey(name = "fk_candidate_uid"))
 @OnDelete(action = OnDeleteAction.CASCADE)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Candidate extends User {
 
     @Column(name = "introduction", length = Constants.MaxLength.CANDIDATE_INTRO)
     private String intro;
 
-    @Column(name = "address", nullable = false, length = Constants.MaxLength.CANDIDATE_ADDR)
+    @Column(name = "address", nullable = false, length = Constants.MaxLength.ADDR)
     private String address;
 
     @Column(name = "nationality_id", nullable = false, length = Constants.MaxLength.NAT_ID)
@@ -41,5 +43,11 @@ public class Candidate extends User {
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<School> schools;
+
+    @Override
+    public void onPrePersist() {
+        super.onPrePersist();
+        this.verified = false;
+    }
 
 }

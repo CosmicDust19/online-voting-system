@@ -1,6 +1,7 @@
 package edu.estu.ovs.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

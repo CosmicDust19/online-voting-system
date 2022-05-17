@@ -1,5 +1,7 @@
 package edu.estu.ovs.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,16 +29,23 @@ public class Election {
     private Integer eid;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "creator_admin_id", columnDefinition = "integer", foreignKey = @ForeignKey(name = "fk_election_creator_admin_id"))
+    @JoinColumn(name = "creator_admin_id", columnDefinition = "integer", updatable = false,
+            foreignKey = @ForeignKey(name = "fk_election_creator_admin_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Admin creator;
 
+    @Column(name = "title", nullable = false, length = Constants.MaxLength.ELECTION_TITLE)
+    private String title;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "start", nullable = false, columnDefinition = "timestamp(0) default current_timestamp")
     private LocalDateTime start;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "end", nullable = false, columnDefinition = "timestamp(0) default current_timestamp")
     private LocalDateTime end;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "creation_date", nullable = false, updatable = false, columnDefinition = "date")
     private LocalDate creationDate;
 
@@ -55,5 +64,10 @@ public class Election {
     )
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Admin> executives;
+
+    @PrePersist
+    public void onPrePersist() {
+        this.creationDate = LocalDate.now();
+    }
 
 }

@@ -23,4 +23,10 @@ public class Admin extends User {
     @Column(name = "verified", nullable = false, columnDefinition = "boolean default false")
     private Boolean verified;
 
+    @Override
+    public void onPrePersist() {
+        super.onPrePersist();
+        this.verified = false;
+    }
+
 }
