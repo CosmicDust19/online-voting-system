@@ -11,6 +11,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -38,4 +39,16 @@ public class Certification {
     @Column(name = "description", length = Constants.MaxLength.CERT_DESC)
     private String desc;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Certification that = (Certification) o;
+        return Objects.equals(certId, that.certId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(certId);
+    }
 }

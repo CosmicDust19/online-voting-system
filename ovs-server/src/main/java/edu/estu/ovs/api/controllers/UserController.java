@@ -3,6 +3,7 @@ package edu.estu.ovs.api.controllers;
 import edu.estu.ovs.core.response.results.abstracts.ApiResult;
 import edu.estu.ovs.core.utilities.Constants;
 import edu.estu.ovs.core.utilities.Msg;
+import edu.estu.ovs.core.utilities.annotations.PhoneNumber;
 import edu.estu.ovs.core.validation.annotations.Exists;
 import edu.estu.ovs.core.validation.annotations.NotExists;
 import edu.estu.ovs.service.abstracts.UserService;
@@ -34,13 +35,21 @@ public class UserController {
         return buildResponseEntity(userService.delete(uid));
     }
 
-    @PostMapping("/add/phone-number")
+    @PatchMapping("/patch/phone_number/add")
     public ResponseEntity<ApiResult> addPhoneNumber(
             @Exists(column = "uid", table = "user") @RequestParam Integer uid,
             @Pattern(regexp = Constants.RegExp.PHONE_NUM, message = Msg.PATTERN)
             @NotExists(column = "phone_number", table = "user_phone_numbers")
-            @RequestParam String phoneNumber) {
+            @PhoneNumber @RequestParam String phoneNumber) {
         return buildResponseEntity(userService.addPhoneNumber(uid, phoneNumber));
+    }
+
+    @PatchMapping("/patch/phone_number/remove")
+    public ResponseEntity<ApiResult> removePhoneNumber(
+            @Exists(column = "uid", table = "user") @RequestParam Integer uid,
+            @Exists(column = "phone_number", table = "user_phone_numbers")
+            @PhoneNumber @RequestParam String phoneNumber) {
+        return buildResponseEntity(userService.removePhoneNumber(uid, phoneNumber));
     }
 
 }

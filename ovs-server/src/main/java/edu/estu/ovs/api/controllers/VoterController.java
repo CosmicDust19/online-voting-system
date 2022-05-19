@@ -3,7 +3,8 @@ package edu.estu.ovs.api.controllers;
 import edu.estu.ovs.core.response.results.abstracts.ApiResult;
 import edu.estu.ovs.core.utilities.Constants;
 import edu.estu.ovs.core.validation.groups.OnCreate;
-import edu.estu.ovs.models.dtos.UserDto;
+import edu.estu.ovs.core.validation.groups.OnUpdate;
+import edu.estu.ovs.models.dtos.VoterDto;
 import edu.estu.ovs.service.abstracts.VoterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,13 @@ public class VoterController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResult> create(@Validated(OnCreate.class) @RequestBody UserDto userDto) {
-        return buildResponseEntity(voterService.save(userDto));
+    public ResponseEntity<ApiResult> create(@Validated(OnCreate.class) @RequestBody VoterDto voterDto) {
+        return buildResponseEntity(voterService.save(voterDto));
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<ApiResult> update(@Validated(OnUpdate.class) @RequestBody VoterDto voterDto) {
+        return buildResponseEntity(voterService.save(voterDto));
     }
 
 }

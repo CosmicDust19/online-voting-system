@@ -1,6 +1,8 @@
 package edu.estu.ovs.core.validation.validators;
 
 import edu.estu.ovs.core.validation.abstracts.Schedulable;
+import edu.estu.ovs.core.validation.abstracts.SchedulableDate;
+import edu.estu.ovs.core.validation.abstracts.SchedulableDateTime;
 import edu.estu.ovs.core.validation.annotations.NoScheduleConflict;
 
 import javax.validation.ConstraintValidator;
@@ -10,7 +12,8 @@ public class NoScheduleConflictValidator implements ConstraintValidator<NoSchedu
 
     @Override
     public boolean isValid(Schedulable schedulable, ConstraintValidatorContext ctx) {
-        return !(schedulable.getStartDate().compareTo(schedulable.getEndDate()) > 0);
+        //noinspection unchecked
+        return schedulable.getStartDate().compareTo(schedulable.getEndDate()) < 0;
     }
 
 }

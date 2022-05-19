@@ -16,6 +16,9 @@ public interface CandidateService {
 
     ApiResult saveCertification(CertificationDto certDto);
 
+    ApiResult removeCertification(Integer certId);
+
     ApiResult saveSchool(SchoolDto schDto);
 
+    ApiResult removeSchool(Integer schId);
 }

@@ -28,7 +28,7 @@ public class MySQLConfig {
     private static boolean running;
 
     static {
-        String defMysqlHome = PropertiesUtils.getElement("application.properties", "mysql.home-path");
+        String defMysqlHome = PropertiesUtils.getElement("mysql.properties", "mysql.home-path");
         mysqlHome = defMysqlHome != null && Files.exists(Paths.get(defMysqlHome)) ? defMysqlHome : null;
         running = Utils.isProcessRunning("mysqld.exe");
     }
@@ -58,8 +58,8 @@ public class MySQLConfig {
         ResultSet res = dataSource.getConnection().createStatement().executeQuery("select @@datadir");
         if (!res.next()) return;
         mysqlHome = res.getString(1).substring(0, res.getString(1).lastIndexOf("mysql") + 6);
-        String oldPath = PropertiesUtils.updateElement("application.properties", "mysql.home-path", mysqlHome);
-        if (!mysqlHome.equals(oldPath)) System.out.println("MySQL Home Path Has Changed.");
+        String oldPath = PropertiesUtils.updateElement("mysql.properties", "mysql.home-path", mysqlHome);
+        if (!mysqlHome.equals(oldPath)) System.out.println("MySQL Home Path Has Fixed.");
     }
 
     @Autowired
@@ -67,8 +67,4 @@ public class MySQLConfig {
         MySQLConfig.dataSource = dataSource;
     }
 
-    /*String username = Utils.getElementFromProperties("application.properties", "spring.datasource.username");
-        String password = Utils.getElementFromProperties("application.properties", "spring.datasource.password");
-        ResultSet res = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", username, password)
-                .createStatement().executeQuery("select @@datadir");*/
 }

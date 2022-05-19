@@ -4,7 +4,7 @@ import edu.estu.ovs.core.response.results.abstracts.ApiResult;
 import edu.estu.ovs.core.response.results.success.ApiSuccessDataResult;
 import edu.estu.ovs.core.utilities.Msg;
 import edu.estu.ovs.data.access.abstracts.VoterDao;
-import edu.estu.ovs.models.dtos.UserDto;
+import edu.estu.ovs.models.dtos.VoterDto;
 import edu.estu.ovs.models.entities.Voter;
 import edu.estu.ovs.service.abstracts.VoterService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,8 @@ public class VoterManager implements VoterService {
     private final ModelMapper modelMapper;
 
     @Override
-    public ApiResult save(UserDto userDto) {
-        return new ApiSuccessDataResult<>(Msg.SAVED, voterDao.save(modelMapper.map(userDto, Voter.class)));
+    public ApiResult save(VoterDto voterDto) {
+        return new ApiSuccessDataResult<>(Msg.SAVED, voterDao.save(modelMapper.map(voterDto, Voter.class)));
     }
 
     @Override

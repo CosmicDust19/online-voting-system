@@ -11,4 +11,6 @@ public interface UserService {
     ApiResult delete(Integer uid);
 
     ApiResult addPhoneNumber(Integer uid, String phoneNumber);
+
+    ApiResult removePhoneNumber(Integer uid, String phoneNumber);
 }

@@ -4,7 +4,7 @@ import edu.estu.ovs.core.response.results.abstracts.ApiResult;
 import edu.estu.ovs.core.response.results.success.ApiSuccessDataResult;
 import edu.estu.ovs.core.utilities.Msg;
 import edu.estu.ovs.data.access.abstracts.AdminDao;
-import edu.estu.ovs.models.dtos.UserDto;
+import edu.estu.ovs.models.dtos.AdminDto;
 import edu.estu.ovs.models.entities.Admin;
 import edu.estu.ovs.service.abstracts.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +21,8 @@ public class AdminManager implements AdminService {
     private final ModelMapper modelMapper;
 
     @Override
-    public ApiResult save(UserDto userDto) {
-        return new ApiSuccessDataResult<>(Msg.SAVED, adminDao.save(modelMapper.map(userDto, Admin.class)));
+    public ApiResult save(AdminDto adminDto) {
+        return new ApiSuccessDataResult<>(Msg.SAVED, adminDao.save(modelMapper.map(adminDto, Admin.class)));
     }
 
     @Override

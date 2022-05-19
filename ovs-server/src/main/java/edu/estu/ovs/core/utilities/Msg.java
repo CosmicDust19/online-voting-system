@@ -13,6 +13,7 @@ public class Msg {
     public static final String UNEXPECTED_ERROR = "Unexpected Error";
 
     public static final String DELETED = "Deleted";
+    public static final String REMOVED = "Removed";
     public static final String INVALID = "Invalid";
     public static final String UK_ELECTION_ATTENDERS = "One candidate can only attend an election for once";
     public static final String START_END_CONFLICT = "The end year cannot be a date before the start year";

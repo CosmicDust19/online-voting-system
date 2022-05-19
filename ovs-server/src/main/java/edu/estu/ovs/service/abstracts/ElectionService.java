@@ -10,5 +10,13 @@ public interface ElectionService {
 
     ApiResult save(ElectionDto electionDto);
 
+    ApiResult addAttender(Integer candId, Integer eid);
+
+    ApiResult addExecutive(Integer adminId, Integer eid);
+
+    ApiResult removeAttender(Integer candId, Integer eid);
+
+    ApiResult removeExecutive(Integer adminId, Integer eid);
+
     ApiResult delete(Integer eid);
 }

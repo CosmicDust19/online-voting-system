@@ -1,6 +1,6 @@
 package edu.estu.ovs.models.dtos;
 
-import edu.estu.ovs.core.validation.abstracts.Schedulable;
+import edu.estu.ovs.core.validation.abstracts.SchedulableDateTime;
 import edu.estu.ovs.core.utilities.Constants;
 import edu.estu.ovs.core.utilities.Msg;
 import edu.estu.ovs.core.validation.annotations.Exists;
@@ -18,14 +18,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @NoScheduleConflict(groups = {OnUpdate.class, OnCreate.class})
-public class ElectionDto implements Schedulable<ChronoLocalDateTime<?>> {
+public class ElectionDto implements SchedulableDateTime {
 
     @Exists(column = "eid", table = "election", groups = {OnUpdate.class})
     @NotExists(column = "eid", table = "election", groups = {OnCreate.class})
@@ -44,14 +43,5 @@ public class ElectionDto implements Schedulable<ChronoLocalDateTime<?>> {
 
     @NotNull(message = Msg.REQUIRED, groups = {OnUpdate.class, OnCreate.class})
     private LocalDateTime endDate;
-
-    // for NoScheduleConflict validation
-    public Comparable<ChronoLocalDateTime<?>> getStartDate() {
-        return startDate;
-    }
-
-    public Comparable<ChronoLocalDateTime<?>> getEndDate() {
-        return endDate;
-    }
 
 }

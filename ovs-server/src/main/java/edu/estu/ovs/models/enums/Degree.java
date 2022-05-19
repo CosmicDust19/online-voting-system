@@ -1,4 +1,4 @@
-package edu.estu.ovs.core.utilities;
+package edu.estu.ovs.models.enums;
 
 public enum Degree {
     Associate, Bachelors, Masters, Doctoral

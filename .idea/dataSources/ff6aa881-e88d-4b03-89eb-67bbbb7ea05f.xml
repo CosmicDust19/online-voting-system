@@ -151,7 +151,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Collation>utf8_bin</Collation>
     </schema>
     <schema id="7" parent="1" name="voting_system">
-      <Collation>utf8mb4_general_ci</Collation>
+      <Collation>latin1_swedish_ci</Collation>
     </schema>
     <collation id="8" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>

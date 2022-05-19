@@ -2,6 +2,7 @@ package edu.estu.ovs.service.concretes;
 
 import edu.estu.ovs.core.response.results.abstracts.ApiResult;
 import edu.estu.ovs.core.response.results.success.ApiSuccessDataResult;
+import edu.estu.ovs.core.response.results.success.ApiSuccessResult;
 import edu.estu.ovs.core.utilities.Msg;
 import edu.estu.ovs.data.access.abstracts.CandidateDao;
 import edu.estu.ovs.data.access.abstracts.CertificationDao;
@@ -42,21 +43,33 @@ public class CandidateManager implements CandidateService {
     public ApiResult updateVerification(Integer uid, Boolean status) {
         Candidate candidate = candidateDao.findById(uid).orElseThrow(EntityNotFoundException::new);
         candidate.setVerified(status);
-        return new ApiSuccessDataResult<>(candidateDao.save(candidate));
+        return new ApiSuccessDataResult<>(Msg.SAVED, candidateDao.save(candidate));
     }
 
     @Override
     public ApiResult saveCertification(CertificationDto certDto) {
-        Certification cert = modelMapper.map(certDto, Certification.class);
-        certDao.save(cert);
+        certDao.save(modelMapper.map(certDto, Certification.class));
         return new ApiSuccessDataResult<>(Msg.SAVED, candidateDao.getById(certDto.getCandidateId()));
     }
 
     @Override
     public ApiResult saveSchool(SchoolDto schDto) {
-        School sch = modelMapper.map(schDto, School.class);
-        schDao.save(sch);
+        schDao.save(modelMapper.map(schDto, School.class));
         return new ApiSuccessDataResult<>(Msg.SAVED, candidateDao.getById(schDto.getCandidateId()));
+    }
+
+    @Override
+    public ApiResult removeCertification(Integer certId) {
+        Integer candId = certDao.findById(certId).orElseThrow(EntityNotFoundException::new).getCandidate().getUid();
+        certDao.deleteById(certId);
+        return new ApiSuccessDataResult<>(Msg.REMOVED, candidateDao.getById(candId));
+    }
+
+    @Override
+    public ApiResult removeSchool(Integer schId) {
+        Integer candId = schDao.findById(schId).orElseThrow(EntityNotFoundException::new).getCandidate().getUid();
+        schDao.deleteById(schId);
+        return new ApiSuccessDataResult<>(Msg.REMOVED, candidateDao.getById(candId));
     }
 
 }

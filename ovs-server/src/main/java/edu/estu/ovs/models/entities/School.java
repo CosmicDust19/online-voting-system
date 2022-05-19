@@ -1,9 +1,8 @@
 package edu.estu.ovs.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.estu.ovs.core.utilities.Constants;
-import edu.estu.ovs.core.utilities.Degree;
+import edu.estu.ovs.models.enums.Degree;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -40,4 +39,16 @@ public class School {
     @Column(name = "degree", nullable = false, length = Constants.MaxLength.SCH_DEG)
     private Degree degree;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        School school = (School) o;
+        return Objects.equals(schId, school.schId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(schId);
+    }
 }

@@ -13,6 +13,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -33,7 +34,7 @@ public class Election {
             foreignKey = @ForeignKey(name = "fk_election_creator_admin_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Admin creator;
-
+    
     @Column(name = "title", nullable = false, length = Constants.MaxLength.ELECTION_TITLE)
     private String title;
 
@@ -70,4 +71,16 @@ public class Election {
         this.creationDate = LocalDate.now();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Election election = (Election) o;
+        return Objects.equals(eid, election.eid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(eid);
+    }
 }

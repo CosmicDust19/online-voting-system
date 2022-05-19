@@ -29,6 +29,7 @@ public class Utils {
 
     public static String getFormattedPhoneNumber(String phone) {
         if (phone == null) return null;
+        if (!phone.matches(Constants.RegExp.PHONE_NUM)) return phone;
         phone = phone.replaceAll("[\\s-()]", "");
         StringBuilder body = new StringBuilder(phone.substring(phone.length() - 10));
         StringBuilder countryCode = new StringBuilder(phone.substring(0, phone.length() - 10));

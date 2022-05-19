@@ -1,5 +1,6 @@
 package edu.estu.ovs.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import javax.persistence.*;
 @Table(name = "admin")
 @PrimaryKeyJoinColumn(name = "uid", referencedColumnName = "uid", foreignKey = @ForeignKey(name = "fk_admin_uid"))
 @OnDelete(action = OnDeleteAction.CASCADE)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Admin extends User {
 
     @Column(name = "verified", nullable = false, columnDefinition = "boolean default false")

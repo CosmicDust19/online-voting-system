@@ -18,12 +18,12 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public abstract class UserDto {
 
     @Exists(column = "uid", table = "user", groups = {OnUpdate.class})
     @NotExists(column = "uid", table = "user", groups = {OnCreate.class})
     @NotNull(message = Msg.REQUIRED, groups = {OnUpdate.class})
-    private Integer uid;
+    protected Integer uid;
 
     @Exists(column = "email", table = "user", groups = {OnUpdate.class})
     @NotExists(column = "email", table = "user", groups = {OnCreate.class})

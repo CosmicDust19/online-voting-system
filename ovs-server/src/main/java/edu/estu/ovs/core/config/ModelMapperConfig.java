@@ -18,8 +18,8 @@ public class ModelMapperConfig {
         modelMapper.addMappings(voteDtoToVote);
         modelMapper.addMappings(electionDtoToElection);
         modelMapper.addMappings(candidateDtoToCandidate);
-        modelMapper.addMappings(userDtoToAdmin);
-        modelMapper.addMappings(userDtoToVoter);
+        modelMapper.addMappings(adminDtoToAdmin);
+        modelMapper.addMappings(voterDtoToVoter);
         modelMapper.addMappings(certDtoToCert);
         modelMapper.addMappings(schDtoToSch);
         return modelMapper;
@@ -53,7 +53,7 @@ public class ModelMapperConfig {
         }
     };
 
-    private final PropertyMap<UserDto, Admin> userDtoToAdmin = new PropertyMap<>() {
+    private final PropertyMap<AdminDto, Admin> adminDtoToAdmin = new PropertyMap<>() {
         @Override
         protected void configure() {
             map(source.getFirstName(), destination.getFName());
@@ -62,7 +62,7 @@ public class ModelMapperConfig {
         }
     };
 
-    private final PropertyMap<UserDto, Voter> userDtoToVoter = new PropertyMap<>() {
+    private final PropertyMap<VoterDto, Voter> voterDtoToVoter = new PropertyMap<>() {
         @Override
         protected void configure() {
             map(source.getFirstName(), destination.getFName());
