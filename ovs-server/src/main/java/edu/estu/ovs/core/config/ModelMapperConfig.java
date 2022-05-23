@@ -2,14 +2,19 @@ package edu.estu.ovs.core.config;
 
 import edu.estu.ovs.models.dtos.*;
 import edu.estu.ovs.models.entities.*;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
+@RequiredArgsConstructor
 public class ModelMapperConfig {
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Bean
     public ModelMapper getModelMapper() {
@@ -50,6 +55,7 @@ public class ModelMapperConfig {
             map(source.getFirstName(), destination.getFName());
             map(source.getMiddleName(), destination.getMName());
             map(source.getLastName(), destination.getLName());
+            using(context -> passwordEncoder.encode(context.getSource().toString())).map(source.getPassword()).setPassword(null);
         }
     };
 
@@ -59,6 +65,7 @@ public class ModelMapperConfig {
             map(source.getFirstName(), destination.getFName());
             map(source.getMiddleName(), destination.getMName());
             map(source.getLastName(), destination.getLName());
+            using(context -> passwordEncoder.encode(context.getSource().toString())).map(source.getPassword()).setPassword(null);
         }
     };
 
@@ -68,6 +75,7 @@ public class ModelMapperConfig {
             map(source.getFirstName(), destination.getFName());
             map(source.getMiddleName(), destination.getMName());
             map(source.getLastName(), destination.getLName());
+            using(context -> passwordEncoder.encode(context.getSource().toString())).map(source.getPassword()).setPassword(null);
         }
     };
 
@@ -82,6 +90,7 @@ public class ModelMapperConfig {
         @Override
         protected void configure() {
             map(source.getCandidateId(), destination.getCandidate().getUid());
+            using(context -> context.getSource().toString()).map(source.getDegree()).setDegree(destination.getDegree());
         }
     };
 

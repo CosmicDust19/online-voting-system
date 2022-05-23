@@ -1,16 +1,14 @@
 package edu.estu.ovs.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -21,6 +19,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "vote", uniqueConstraints = @UniqueConstraint(columnNames = {"voter_id", "election_id"}, name = "uk_vote_voter_id_election_id"))
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Vote {
 
     @Id

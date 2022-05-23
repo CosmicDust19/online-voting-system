@@ -2,6 +2,7 @@ package edu.estu.ovs.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -16,8 +17,6 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 public class SpringFoxConfig {
-
-    public static final String AUTHORIZATION_HEADER = "Authorization";
 
     private ApiInfo apiInfo() {
         return new ApiInfo("Online Voting System Rest APIs",
@@ -42,7 +41,7 @@ public class SpringFoxConfig {
     }
 
     private ApiKey apiKey() {
-        return new ApiKey(AUTHORIZATION_HEADER, "JWT", "header");
+        return new ApiKey(HttpHeaders.AUTHORIZATION, "JWT", "header");
     }
 
     private SecurityContext securityContext() {
@@ -56,7 +55,7 @@ public class SpringFoxConfig {
                 = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        return List.of(new SecurityReference(AUTHORIZATION_HEADER, authorizationScopes));
+        return List.of(new SecurityReference(HttpHeaders.AUTHORIZATION, authorizationScopes));
     }
 
 }

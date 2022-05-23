@@ -1,12 +1,12 @@
 package edu.estu.ovs.api.controllers;
 
-import edu.estu.ovs.core.response.results.abstracts.ApiResult;
+import edu.estu.ovs.core.results.abstracts.ApiResult;
 import edu.estu.ovs.core.utilities.Constants;
-import edu.estu.ovs.core.validation.annotations.Exists;
 import edu.estu.ovs.core.validation.groups.OnCreate;
 import edu.estu.ovs.core.validation.groups.OnUpdate;
 import edu.estu.ovs.models.dtos.AdminDto;
 import edu.estu.ovs.service.abstracts.AdminService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +19,7 @@ import static edu.estu.ovs.core.utilities.Utils.buildResponseEntity;
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 @Validated
+@Api(tags = "Admin")
 public class AdminController {
 
     private final AdminService adminService;
@@ -36,12 +37,6 @@ public class AdminController {
     @PutMapping("/update")
     public ResponseEntity<ApiResult> update(@Validated(OnUpdate.class) @RequestBody AdminDto adminDto) {
         return buildResponseEntity(adminService.save(adminDto));
-    }
-
-    @PatchMapping("/patch/verified")
-    public ResponseEntity<ApiResult> updateVerification(
-            @Exists(column = "uid", table = "admin") @RequestParam Integer uid, @RequestParam Boolean status) {
-        return buildResponseEntity(adminService.updateVerification(uid, status));
     }
 
 }

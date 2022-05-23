@@ -1,16 +1,17 @@
 package edu.estu.ovs.core.utilities;
 
-import edu.estu.ovs.core.response.results.abstracts.ApiResult;
+import edu.estu.ovs.core.results.abstracts.ApiResult;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.io.*;
+import java.io.BufferedReader;
 
 public class Utils {
 
     public static ResponseEntity<ApiResult> buildResponseEntity(ApiResult apiResult) {
-        return ResponseEntity.status(apiResult.getStatus()).body(apiResult);
+        return ResponseEntity.status(apiResult != null ? apiResult.getStatus() : HttpStatus.BAD_REQUEST).body(apiResult);
     }
 
     @SneakyThrows

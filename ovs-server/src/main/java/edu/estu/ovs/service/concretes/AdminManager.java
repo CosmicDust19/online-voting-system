@@ -1,19 +1,25 @@
 package edu.estu.ovs.service.concretes;
 
-import edu.estu.ovs.core.response.results.abstracts.ApiResult;
-import edu.estu.ovs.core.response.results.success.ApiSuccessDataResult;
+import edu.estu.ovs.core.results.abstracts.ApiResult;
+import edu.estu.ovs.core.results.success.ApiSuccessDataResult;
 import edu.estu.ovs.core.utilities.Msg;
-import edu.estu.ovs.data.access.abstracts.AdminDao;
+import edu.estu.ovs.dataaccess.abstracts.AdminDao;
 import edu.estu.ovs.models.dtos.AdminDto;
 import edu.estu.ovs.models.entities.Admin;
+import edu.estu.ovs.models.entities.Authority;
+import edu.estu.ovs.models.enums.RoleName;
 import edu.estu.ovs.service.abstracts.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AdminManager implements AdminService {
 
@@ -22,19 +28,14 @@ public class AdminManager implements AdminService {
 
     @Override
     public ApiResult save(AdminDto adminDto) {
-        return new ApiSuccessDataResult<>(Msg.SAVED, adminDao.save(modelMapper.map(adminDto, Admin.class)));
+        Admin admin = modelMapper.map(adminDto, Admin.class);
+        admin.setAuthorities(new ArrayList<>(List.of(new Authority(3, RoleName.ROLE_ADMIN))));
+        return new ApiSuccessDataResult<>(HttpStatus.CREATED, Msg.SAVED, adminDao.save(admin));
     }
 
     @Override
     public ApiResult getAll() {
         return new ApiSuccessDataResult<>(adminDao.findAll());
-    }
-
-    @Override
-    public ApiResult updateVerification(Integer uid, Boolean status) {
-        Admin admin = adminDao.findById(uid).orElseThrow(EntityNotFoundException::new);
-        admin.setVerified(status);
-        return new ApiSuccessDataResult<>(adminDao.save(admin));
     }
 
 }

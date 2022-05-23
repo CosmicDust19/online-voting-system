@@ -1,17 +1,25 @@
 package edu.estu.ovs.service.concretes;
 
-import edu.estu.ovs.core.response.results.abstracts.ApiResult;
-import edu.estu.ovs.core.response.results.success.ApiSuccessDataResult;
+import edu.estu.ovs.core.results.abstracts.ApiResult;
+import edu.estu.ovs.core.results.success.ApiSuccessDataResult;
 import edu.estu.ovs.core.utilities.Msg;
-import edu.estu.ovs.data.access.abstracts.VoterDao;
+import edu.estu.ovs.dataaccess.abstracts.VoterDao;
 import edu.estu.ovs.models.dtos.VoterDto;
+import edu.estu.ovs.models.entities.Authority;
 import edu.estu.ovs.models.entities.Voter;
+import edu.estu.ovs.models.enums.RoleName;
 import edu.estu.ovs.service.abstracts.VoterService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class VoterManager implements VoterService {
 
@@ -20,7 +28,9 @@ public class VoterManager implements VoterService {
 
     @Override
     public ApiResult save(VoterDto voterDto) {
-        return new ApiSuccessDataResult<>(Msg.SAVED, voterDao.save(modelMapper.map(voterDto, Voter.class)));
+        Voter voter = modelMapper.map(voterDto, Voter.class);
+        voter.setAuthorities(new ArrayList<>(List.of(new Authority(1, RoleName.ROLE_VOTER))));
+        return new ApiSuccessDataResult<>(HttpStatus.CREATED, Msg.SAVED, voterDao.save(voter));
     }
 
     @Override

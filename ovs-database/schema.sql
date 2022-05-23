@@ -1,20 +1,27 @@
-CREATE DATABASE ovs;
+CREATE DATABASE IF NOT EXISTS ovs;
 USE ovs;
 
-create table user
+create table if not exists authority
+(
+    authority_id integer     not null primary key,
+    name         varchar(40) not null
+);
+
+create table if not exists user
 (
     uid           integer      not null auto_increment primary key,
     email         varchar(100) not null,
-    password      varchar(100) not null,
+    password      varchar(60)  not null,
     f_name        varchar(30)  not null,
     m_name        varchar(30),
     l_name        varchar(30)  not null,
     birth_date    date         not null,
+    enabled       boolean      not null default false,
     creation_date date         not null default current_date,
     CONSTRAINT uk_user_email UNIQUE (email)
 );
 
-create table user_phone_numbers
+create table if not exists user_phone_numbers
 (
     pid          integer     not null primary key,
     phone_number varchar(17) not null,
@@ -23,34 +30,43 @@ create table user_phone_numbers
         REFERENCES user (uid) ON DELETE CASCADE
 );
 
-create table voter
+create table if not exists user_authorities
+(
+    uid          integer not null,
+    authority_id integer not null,
+    CONSTRAINT pk_user_authorities PRIMARY KEY (uid, authority_id),
+    CONSTRAINT fk_user_authorities_uid FOREIGN KEY (uid)
+        REFERENCES user (uid) ON DELETE CASCADE,
+    CONSTRAINT fk_user_authorities_authority_id FOREIGN KEY (authority_id)
+        REFERENCES authority (authority_id) ON DELETE CASCADE
+);
+
+create table if not exists voter
 (
     uid integer not null primary key,
     CONSTRAINT fk_voter_uid FOREIGN KEY (uid)
         REFERENCES user (uid) ON DELETE CASCADE
 );
 
-create table admin
+create table if not exists admin
 (
-    uid      integer not null primary key,
-    verified boolean not null default false,
+    uid integer not null primary key,
     CONSTRAINT fk_admin_uid FOREIGN KEY (uid)
         REFERENCES user (uid) ON DELETE CASCADE
 );
 
-create table candidate
+create table if not exists candidate
 (
     uid            integer      not null primary key,
     introduction   varchar(1000),
     address        varchar(400) not null,
     nationality_id varchar(11)  not null,
-    verified       boolean      not null default false,
     CONSTRAINT uk_candidate_nationality_id UNIQUE (nationality_id),
     CONSTRAINT fk_candidate_uid FOREIGN KEY (uid)
         REFERENCES user (uid) ON DELETE CASCADE
 );
 
-create table candidate_certifications
+create table if not exists candidate_certifications
 (
     cert_id      integer     not null auto_increment primary key,
     candidate_id integer     not null,
@@ -61,7 +77,7 @@ create table candidate_certifications
         REFERENCES candidate (uid) ON DELETE CASCADE
 );
 
-create table candidate_schools
+create table if not exists candidate_schools
 (
     sch_id       integer     not null auto_increment primary key,
     candidate_id integer     not null,
@@ -72,7 +88,7 @@ create table candidate_schools
         REFERENCES candidate (uid) ON DELETE CASCADE
 );
 
-create table election
+create table if not exists election
 (
     eid              integer      not null primary key,
     creator_admin_id integer      not null,
@@ -84,7 +100,7 @@ create table election
         REFERENCES admin (uid) ON DELETE CASCADE
 );
 
-create table election_attenders
+create table if not exists election_attenders
 (
     election_id  integer not null,
     candidate_id integer not null,
@@ -95,7 +111,7 @@ create table election_attenders
         REFERENCES candidate (uid) ON DELETE CASCADE
 );
 
-create table election_executives
+create table if not exists election_executives
 (
     admin_id    integer not null,
     election_id integer not null,
@@ -106,7 +122,7 @@ create table election_executives
         REFERENCES election (eid) ON DELETE CASCADE
 );
 
-create table vote
+create table if not exists vote
 (
     vote_id      integer      not null,
     voter_id     integer      not null,

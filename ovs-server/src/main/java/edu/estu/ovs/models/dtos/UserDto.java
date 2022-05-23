@@ -1,11 +1,11 @@
 package edu.estu.ovs.models.dtos;
 
+import edu.estu.ovs.core.utilities.Constants;
+import edu.estu.ovs.core.utilities.Msg;
 import edu.estu.ovs.core.validation.annotations.Exists;
 import edu.estu.ovs.core.validation.annotations.NotExists;
 import edu.estu.ovs.core.validation.groups.OnCreate;
 import edu.estu.ovs.core.validation.groups.OnUpdate;
-import edu.estu.ovs.core.utilities.Msg;
-import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

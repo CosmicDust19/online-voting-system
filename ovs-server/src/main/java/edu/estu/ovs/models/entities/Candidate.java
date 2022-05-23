@@ -35,19 +35,10 @@ public class Candidate extends User {
     @JsonIgnore
     private String natId;
 
-    @Column(name = "verified", nullable = false, columnDefinition = "boolean default false")
-    private Boolean verified;
-
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<Certification> certs;
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<School> schools;
-
-    @Override
-    public void onPrePersist() {
-        super.onPrePersist();
-        this.verified = false;
-    }
 
 }

@@ -1,4 +1,4 @@
 package edu.estu.ovs.models.dtos;
 
-public class AdminDto extends UserDto{
+public class AdminDto extends UserDto {
 }

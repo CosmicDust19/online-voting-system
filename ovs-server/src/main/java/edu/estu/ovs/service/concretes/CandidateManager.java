@@ -1,26 +1,32 @@
 package edu.estu.ovs.service.concretes;
 
-import edu.estu.ovs.core.response.results.abstracts.ApiResult;
-import edu.estu.ovs.core.response.results.success.ApiSuccessDataResult;
-import edu.estu.ovs.core.response.results.success.ApiSuccessResult;
+import edu.estu.ovs.core.results.abstracts.ApiResult;
+import edu.estu.ovs.core.results.success.ApiSuccessDataResult;
 import edu.estu.ovs.core.utilities.Msg;
-import edu.estu.ovs.data.access.abstracts.CandidateDao;
-import edu.estu.ovs.data.access.abstracts.CertificationDao;
-import edu.estu.ovs.data.access.abstracts.SchoolDao;
+import edu.estu.ovs.dataaccess.abstracts.CandidateDao;
+import edu.estu.ovs.dataaccess.abstracts.CertificationDao;
+import edu.estu.ovs.dataaccess.abstracts.SchoolDao;
 import edu.estu.ovs.models.dtos.CandidateDto;
 import edu.estu.ovs.models.dtos.CertificationDto;
 import edu.estu.ovs.models.dtos.SchoolDto;
+import edu.estu.ovs.models.entities.Authority;
 import edu.estu.ovs.models.entities.Candidate;
 import edu.estu.ovs.models.entities.Certification;
 import edu.estu.ovs.models.entities.School;
+import edu.estu.ovs.models.enums.RoleName;
 import edu.estu.ovs.service.abstracts.CandidateService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class CandidateManager implements CandidateService {
 
@@ -31,19 +37,14 @@ public class CandidateManager implements CandidateService {
 
     @Override
     public ApiResult save(CandidateDto candidateDto) {
-        return new ApiSuccessDataResult<>(Msg.SAVED, candidateDao.save(modelMapper.map(candidateDto, Candidate.class)));
+        Candidate candidate = modelMapper.map(candidateDto, Candidate.class);
+        candidate.setAuthorities(new ArrayList<>(List.of(new Authority(2, RoleName.ROLE_CANDIDATE))));
+        return new ApiSuccessDataResult<>(HttpStatus.CREATED, Msg.SAVED, candidateDao.save(candidate));
     }
 
     @Override
     public ApiResult getAll() {
         return new ApiSuccessDataResult<>(candidateDao.findAll());
-    }
-
-    @Override
-    public ApiResult updateVerification(Integer uid, Boolean status) {
-        Candidate candidate = candidateDao.findById(uid).orElseThrow(EntityNotFoundException::new);
-        candidate.setVerified(status);
-        return new ApiSuccessDataResult<>(Msg.SAVED, candidateDao.save(candidate));
     }
 
     @Override

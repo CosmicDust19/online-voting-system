@@ -1,6 +1,7 @@
 package edu.estu.ovs.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.estu.ovs.core.utilities.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,6 +24,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "election")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Election {
 
     @Id
@@ -34,19 +37,19 @@ public class Election {
             foreignKey = @ForeignKey(name = "fk_election_creator_admin_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Admin creator;
-    
+
     @Column(name = "title", nullable = false, length = Constants.MaxLength.ELECTION_TITLE)
     private String title;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "start", nullable = false, columnDefinition = "timestamp(0) default current_timestamp")
     private LocalDateTime start;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "end", nullable = false, columnDefinition = "timestamp(0) default current_timestamp")
     private LocalDateTime end;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "creation_date", nullable = false, updatable = false, columnDefinition = "date")
     private LocalDate creationDate;
 
@@ -69,6 +72,8 @@ public class Election {
     @PrePersist
     public void onPrePersist() {
         this.creationDate = LocalDate.now();
+        if (attenders == null) attenders = new ArrayList<>();
+        if (executives == null) executives = new ArrayList<>();
     }
 
     @Override

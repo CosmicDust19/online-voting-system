@@ -3,17 +3,18 @@ package edu.estu.ovs.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 
 @Entity
 @Table(name = "admin")
@@ -21,14 +22,4 @@ import javax.persistence.*;
 @OnDelete(action = OnDeleteAction.CASCADE)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Admin extends User {
-
-    @Column(name = "verified", nullable = false, columnDefinition = "boolean default false")
-    private Boolean verified;
-
-    @Override
-    public void onPrePersist() {
-        super.onPrePersist();
-        this.verified = false;
-    }
-
 }

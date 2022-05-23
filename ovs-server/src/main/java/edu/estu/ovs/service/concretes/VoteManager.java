@@ -1,20 +1,23 @@
 package edu.estu.ovs.service.concretes;
 
-import edu.estu.ovs.core.response.results.abstracts.ApiResult;
-import edu.estu.ovs.core.response.results.success.ApiSuccessDataResult;
-import edu.estu.ovs.core.response.results.success.ApiSuccessResult;
+import edu.estu.ovs.core.results.abstracts.ApiResult;
+import edu.estu.ovs.core.results.success.ApiSuccessDataResult;
+import edu.estu.ovs.core.results.success.ApiSuccessResult;
 import edu.estu.ovs.core.utilities.Msg;
-import edu.estu.ovs.data.access.abstracts.VoteDao;
+import edu.estu.ovs.dataaccess.abstracts.VoteDao;
 import edu.estu.ovs.models.dtos.VoteDto;
 import edu.estu.ovs.models.entities.Vote;
 import edu.estu.ovs.service.abstracts.VoteService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityExistsException;
+import javax.transaction.Transactional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class VoteManager implements VoteService {
 
@@ -53,7 +56,7 @@ public class VoteManager implements VoteService {
 
     @Override
     public ApiResult vote(VoteDto voteDto) {
-        return new ApiSuccessDataResult<>(Msg.SAVED, voteDao.save(modelMapper.map(voteDto, Vote.class)));
+        return new ApiSuccessDataResult<>(HttpStatus.CREATED, Msg.SAVED, voteDao.save(modelMapper.map(voteDto, Vote.class)));
     }
 
     @Override

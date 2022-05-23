@@ -1,12 +1,12 @@
 package edu.estu.ovs.models.dtos;
 
 import edu.estu.ovs.core.utilities.Constants;
-import edu.estu.ovs.models.enums.Degree;
 import edu.estu.ovs.core.utilities.Msg;
 import edu.estu.ovs.core.validation.annotations.Exists;
 import edu.estu.ovs.core.validation.annotations.NotExists;
 import edu.estu.ovs.core.validation.groups.OnCreate;
 import edu.estu.ovs.core.validation.groups.OnUpdate;
+import edu.estu.ovs.models.enums.Degree;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +32,7 @@ public class SchoolDto {
     private Integer candidateId;
 
     @NotBlank(message = Msg.REQUIRED, groups = {OnCreate.class, OnUpdate.class})
-    @Size(min = Constants.MinLength.CERT_NAME, max = Constants.MaxLength.CERT_NAME, message = Msg.SIZE, groups = {OnUpdate.class, OnCreate.class})
+    @Size(min = Constants.MinLength.SCH_NAME, max = Constants.MaxLength.SCH_NAME, message = Msg.SIZE, groups = {OnUpdate.class, OnCreate.class})
     private String name;
 
     @NotNull(message = Msg.REQUIRED, groups = {OnCreate.class, OnUpdate.class})

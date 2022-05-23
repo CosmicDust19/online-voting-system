@@ -1,8 +1,8 @@
 package edu.estu.ovs.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.estu.ovs.core.utilities.Constants;
-import edu.estu.ovs.models.enums.Degree;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +20,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "candidate_schools", uniqueConstraints = @UniqueConstraint(columnNames = {"candidate_id", "name", "degree"}, name = "uk_candidate_schools_candidate_id_name"))
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class School {
 
     @Id
@@ -33,11 +34,11 @@ public class School {
     @JsonIgnore
     private Candidate candidate;
 
-    @Column(name = "name",nullable = false, length = Constants.MaxLength.SCH_NAME)
+    @Column(name = "name", nullable = false, length = Constants.MaxLength.SCH_NAME)
     private String name;
 
     @Column(name = "degree", nullable = false, length = Constants.MaxLength.SCH_DEG)
-    private Degree degree;
+    private String degree;
 
     @Override
     public boolean equals(Object o) {

@@ -1,14 +1,17 @@
 package edu.estu.ovs.api.controllers;
 
-import edu.estu.ovs.core.response.results.abstracts.ApiResult;
+import edu.estu.ovs.core.aspects.annotations.PhoneNumber;
+import edu.estu.ovs.core.results.abstracts.ApiResult;
 import edu.estu.ovs.core.utilities.Constants;
 import edu.estu.ovs.core.utilities.Msg;
-import edu.estu.ovs.core.utilities.annotations.PhoneNumber;
 import edu.estu.ovs.core.validation.annotations.Exists;
 import edu.estu.ovs.core.validation.annotations.NotExists;
 import edu.estu.ovs.service.abstracts.UserService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,7 @@ import static edu.estu.ovs.core.utilities.Utils.buildResponseEntity;
 @RequestMapping("/user")
 @RequiredArgsConstructor
 @Validated
+@Api(tags = "User")
 public class UserController {
 
     private final UserService userService;
@@ -31,8 +35,14 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<ApiResult> delete(@Exists(column = "uid", table = "user") @RequestParam Integer uid) {
-        return buildResponseEntity(userService.delete(uid));
+    public ResponseEntity<ApiResult> delete(@Exists(column = "email", table = "user") @RequestParam String email, Authentication authentication) {
+        return buildResponseEntity(null);
+    }
+
+    @PatchMapping("/patch/enabled")
+    public ResponseEntity<ApiResult> updateVerification(
+            @Exists(column = "uid", table = "user") @RequestParam Integer uid, @RequestParam Boolean status) {
+        return buildResponseEntity(userService.updateEnabled(uid, status));
     }
 
     @PatchMapping("/patch/phone_number/add")

@@ -1,8 +1,6 @@
 package edu.estu.ovs.core.validation.validators;
 
 import edu.estu.ovs.core.validation.abstracts.Schedulable;
-import edu.estu.ovs.core.validation.abstracts.SchedulableDate;
-import edu.estu.ovs.core.validation.abstracts.SchedulableDateTime;
 import edu.estu.ovs.core.validation.annotations.NoScheduleConflict;
 
 import javax.validation.ConstraintValidator;

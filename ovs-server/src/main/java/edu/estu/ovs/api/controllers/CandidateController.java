@@ -1,6 +1,6 @@
 package edu.estu.ovs.api.controllers;
 
-import edu.estu.ovs.core.response.results.abstracts.ApiResult;
+import edu.estu.ovs.core.results.abstracts.ApiResult;
 import edu.estu.ovs.core.utilities.Constants;
 import edu.estu.ovs.core.validation.annotations.Exists;
 import edu.estu.ovs.core.validation.groups.OnCreate;
@@ -9,6 +9,7 @@ import edu.estu.ovs.models.dtos.CandidateDto;
 import edu.estu.ovs.models.dtos.CertificationDto;
 import edu.estu.ovs.models.dtos.SchoolDto;
 import edu.estu.ovs.service.abstracts.CandidateService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,7 @@ import static edu.estu.ovs.core.utilities.Utils.buildResponseEntity;
 @RequestMapping("/candidate")
 @RequiredArgsConstructor
 @Validated
+@Api(tags = "Candidate")
 public class CandidateController {
 
     private final CandidateService candidateService;
@@ -38,12 +40,6 @@ public class CandidateController {
     @PutMapping("/update")
     public ResponseEntity<ApiResult> update(@Validated(OnUpdate.class) @RequestBody CandidateDto candidateDto) {
         return buildResponseEntity(candidateService.save(candidateDto));
-    }
-
-    @PatchMapping("/patch/verified")
-    public ResponseEntity<ApiResult> updateVerification(
-            @Exists(column = "uid", table = "candidate") @RequestParam Integer uid, @RequestParam Boolean status) {
-        return buildResponseEntity(candidateService.updateVerification(uid, status));
     }
 
     @PatchMapping("/patch/certifications/add")

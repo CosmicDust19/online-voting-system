@@ -1,8 +1,8 @@
 package edu.estu.ovs.models.dtos;
 
-import edu.estu.ovs.core.validation.abstracts.SchedulableDateTime;
 import edu.estu.ovs.core.utilities.Constants;
 import edu.estu.ovs.core.utilities.Msg;
+import edu.estu.ovs.core.validation.abstracts.SchedulableDateTime;
 import edu.estu.ovs.core.validation.annotations.Exists;
 import edu.estu.ovs.core.validation.annotations.NoScheduleConflict;
 import edu.estu.ovs.core.validation.annotations.NotExists;

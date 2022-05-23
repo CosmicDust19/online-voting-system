@@ -20,6 +20,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "candidate_certifications", uniqueConstraints = @UniqueConstraint(columnNames = {"candidate_id", "name"}, name = "uk_candidate_certifications_candidate_id_name"))
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Certification {
 
     @Id

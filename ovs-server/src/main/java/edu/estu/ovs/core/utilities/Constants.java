@@ -12,6 +12,8 @@ public class Constants {
         public static final String WEBSITE = "^(w{3}\\.)?[^.]+(\\.\\p{javaLowerCase}{2,12})+$";
         public static final String PHONE_NUM = "^((\\+?\\d{1,3})?0?[\\s-]?)?\\(?0?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}$";
         public static final String DATE = "^\\d{4}-\\d{2}-\\d{2}$";
+        public static final String JSON_OBJECT = "\\{.+:.+(,.+:.+)*}";
+        public static final String JSON_ARRAY = "\\[(\\{.+:.+(,.+:.+)*})*]";
     }
 
     public static class MinLength {
@@ -31,7 +33,7 @@ public class Constants {
         public static final int M_NAME = 30;
         public static final int L_NAME = 30;
         public static final int PW = 25;
-        public static final int CODED_PW =  100;
+        public static final int BCRYPT_PW = 60;
         public static final int CANDIDATE_INTRO = 1000;
         public static final int ADDR = 400;
         public static final int NAT_ID = 11;
@@ -42,6 +44,7 @@ public class Constants {
         public static final int PHONE_NUM = 17;
         public static final int EMAIL = 100;
         public static final int ELECTION_TITLE = 100;
+        public static final int AUTHORITY_NAME = 40;
     }
 
 }
