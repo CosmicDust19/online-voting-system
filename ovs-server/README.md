@@ -1,10 +1,7 @@
 ## HOW TO RUN
 
-- Mysql home path will be determined automatically after first run, but it requires to mysql running at first running.
-- Open project file with IntelliJ IDEA
-- IntelliJ IDEA will ask to install dependencies, choose ***Run 'npm install'*** (If you want to see the UI).
-- You can use run configurations now.
-    - Use ***OvsServerApplication*** configuration to run ovs-server.
-      - It will create the ovs database and its tables if not exist.
-      - Default database username is "root" and password is empty. Change if your username and pw are different (from ovs-server/src/main/resources/application.properties).
-    - Use ***start*** (npm) configuration to run ovs-client (UI)
+- Database config:
+  - Be sure that MySQL installed in your computer (MySQL5 InnoDB Dialect used in this project)
+  - Mysql home path will be determined automatically after first run, but it requires to mysql running at first running.
+  - Default database username is "root" and password is empty. Change if your username and pw are different (from ovs-server/src/main/resources/application.properties).
+- Run "mvn spring-boot:run" in default project directory to see controllers at localhost:8080 in your browser
