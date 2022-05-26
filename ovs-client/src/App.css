@@ -1,1 +1,58 @@
+/* forms */
+
+input::placeholder {
+    color: #c7c7c7;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0 15px;
+    display: inline-block;
+    border: 2px solid #939393;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #e1e1e1;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+/* tools */
+.p-20 {
+    padding: 20px;
+}
+
+.container-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.w-250 {
+    width: 250px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
 

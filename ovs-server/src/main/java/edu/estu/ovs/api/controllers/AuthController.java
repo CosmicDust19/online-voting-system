@@ -1,6 +1,7 @@
 package edu.estu.ovs.api.controllers;
 
 import edu.estu.ovs.core.config.security.JwtTokenUtils;
+import edu.estu.ovs.core.results.success.ApiSuccessDataResult;
 import edu.estu.ovs.core.utilities.Constants;
 import edu.estu.ovs.models.dtos.LoginDto;
 import edu.estu.ovs.service.abstracts.UserService;
@@ -39,9 +40,10 @@ public class AuthController {
             Authentication authenticate = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
             User user = (User) authenticate.getPrincipal();
+            String token = jwtTokenUtils.generateToken(user);
             return ResponseEntity.ok()
-                    .header(HttpHeaders.AUTHORIZATION, jwtTokenUtils.generateToken(user))
-                    .body(userService.findByUserName(user.getUsername()));
+                    .header(HttpHeaders.AUTHORIZATION, token)
+                    .body(new ApiSuccessDataResult<>(token, userService.findByUserName(user.getUsername())));
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

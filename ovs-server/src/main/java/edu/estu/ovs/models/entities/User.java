@@ -75,7 +75,7 @@ public class User {
     @Column(name = "phone_number", nullable = false, length = Constants.MaxLength.PHONE_NUM)
     protected Set<String> phoneNumbers;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_authorities",
             joinColumns = @JoinColumn(name = "uid", nullable = false), foreignKey = @ForeignKey(name = "fk_user_authorities_uid"),
@@ -87,7 +87,7 @@ public class User {
 
     @PrePersist
     public void onPrePersist() {
-        this.enabled = false;
+        this.enabled = true;
         this.creationDate = LocalDate.now();
     }
 

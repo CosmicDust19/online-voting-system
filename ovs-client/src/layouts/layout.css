@@ -1,0 +1,80 @@
+body {
+    font-family: "Century Gothic", sans-serif;
+    color: white;
+    background-color: #121212;
+    margin: 0;
+    list-style: none;
+}
+
+/* navbar */
+nav ul {
+    list-style-type: none;
+    margin: 10px 0 0 20px;
+    padding: 0;
+    top: 0;
+    overflow: hidden;
+    background-color: transparent;
+    position: -webkit-sticky;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: .3s ease;
+}
+
+nav li a:hover, .dropdown:hover .dropbtn {
+    background-color: rgba(180, 134, 36, 0.8);
+    color: white;
+}
+
+nav li.dropdown {
+    display: inline-block;
+}
+
+nav .dropdown-content {
+    display: none;
+    padding-top: 5px;
+    border-radius: 12px;
+    position: absolute;
+    background-color: #121212;
+    min-width: 160px;
+    z-index: 1;
+}
+
+nav .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+nav .dropdown-content a:hover {background-color: #494949;}
+
+nav .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+nav .ovs-logo {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: .3s ease;
+    margin-bottom: -29px;
+}
+
+
+
+

@@ -22,7 +22,6 @@ public class HttpHelper {
         InputStream inputStream = request.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         reader.lines().forEach(line -> sb.append(trim(line)));
-        System.out.println(sb);
         inputStream.close();
         reader.close();
         return sb.toString();
