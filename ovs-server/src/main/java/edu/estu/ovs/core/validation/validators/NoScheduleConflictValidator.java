@@ -10,6 +10,7 @@ public class NoScheduleConflictValidator implements ConstraintValidator<NoSchedu
 
     @Override
     public boolean isValid(Schedulable schedulable, ConstraintValidatorContext ctx) {
+        if (schedulable.getEndDate() == null || schedulable.getStartDate() == null) return true;
         //noinspection unchecked
         return schedulable.getStartDate().compareTo(schedulable.getEndDate()) < 0;
     }

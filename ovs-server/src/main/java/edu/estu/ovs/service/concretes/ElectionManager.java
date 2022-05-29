@@ -7,6 +7,7 @@ import edu.estu.ovs.core.utilities.Msg;
 import edu.estu.ovs.dataaccess.abstracts.AdminDao;
 import edu.estu.ovs.dataaccess.abstracts.CandidateDao;
 import edu.estu.ovs.dataaccess.abstracts.ElectionDao;
+import edu.estu.ovs.dataaccess.abstracts.VoteDao;
 import edu.estu.ovs.models.dtos.ElectionDto;
 import edu.estu.ovs.models.entities.Election;
 import edu.estu.ovs.service.abstracts.ElectionService;
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -25,6 +28,7 @@ import java.util.Objects;
 public class ElectionManager implements ElectionService {
 
     private final ElectionDao electionDao;
+    private final VoteDao voteDao;
     private final CandidateDao candidateDao;
     private final AdminDao adminDao;
     private final ModelMapper modelMapper;
@@ -32,6 +36,18 @@ public class ElectionManager implements ElectionService {
     @Override
     public ApiResult getAll() {
         return new ApiSuccessDataResult<>(electionDao.findAll());
+    }
+
+    @Override
+    public ApiResult getById(Integer eid) {
+        return new ApiSuccessDataResult<>(electionDao.findById(eid).orElse(null));
+    }
+
+    @Override
+    public ApiResult getAdminResponsibilities(Integer adminId) {
+        List<Election> elections = electionDao.findByExecutives_UidOrderByCreationDate(adminId);
+        elections.addAll(electionDao.findByCreator_UidOrderByCreationDate(adminId));
+        return new ApiSuccessDataResult<>(elections.stream().distinct().collect(Collectors.toList()));
     }
 
     @Override
@@ -57,6 +73,7 @@ public class ElectionManager implements ElectionService {
     public ApiResult removeAttender(Integer candId, Integer eid) {
         Election election = electionDao.findById(eid).orElseThrow(EntityNotFoundException::new);
         election.getAttenders().removeIf(attender -> Objects.equals(attender.getUid(), candId));
+        voteDao.deleteByElection_EidAndCandidate_Uid(eid, candId);
         return new ApiSuccessDataResult<>(Msg.REMOVED, electionDao.save(election));
     }
 

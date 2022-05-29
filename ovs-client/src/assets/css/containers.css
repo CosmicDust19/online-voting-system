@@ -1,0 +1,67 @@
+/* container */
+.container-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.container-fluid {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-glass {
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+}
+
+/* segments */
+.segment {
+    color: white;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 90vh;
+    transition: .3s;
+    position: relative;
+}
+
+.segment .forward, .segment .backward {
+    background-color: rgba(255, 255, 255, 0.05);
+    position: absolute;
+    top: 38vh;
+    width: 50px;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-decoration: none;
+    color: white;
+    transition: .3s;
+    border-radius: 12px;
+    z-index: 1;
+}
+
+.segment .forward:hover, .segment .backward:hover {
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+.segment .forward {
+    left: 0;
+}
+
+.segment .forward::before {
+    content: "<";
+}
+
+.segment .backward {
+    right: 0;
+}
+
+.segment .backward::before {
+    content: ">";
+}

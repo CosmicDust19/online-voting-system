@@ -15,6 +15,10 @@ public interface VoteDao extends JpaRepository<Vote, Integer> {
 
     List<Vote> getByElection_EidAndCandidate_Uid(Integer eid, Integer candId);
 
+    Integer countByElection_EidAndCandidate_Uid(Integer eid, Integer uid);
+
     Vote findFirstByElection_EidAndVoter_Uid(Integer eid, Integer voterId);
+
+    void deleteByElection_EidAndCandidate_Uid(Integer eid, Integer uid);
 
 }

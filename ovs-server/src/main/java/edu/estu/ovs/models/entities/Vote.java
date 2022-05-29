@@ -1,5 +1,6 @@
 package edu.estu.ovs.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,13 +36,16 @@ public class Vote {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "election_id", nullable = false, columnDefinition = "integer", foreignKey = @ForeignKey(name = "fk_vote_election_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties({"attenders", "executives"})
     private Election election;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "candidate_id", nullable = false, columnDefinition = "integer", foreignKey = @ForeignKey(name = "fk_vote_candidate_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties({"certs", "schools"})
     private Candidate candidate;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "vote_date", nullable = false, columnDefinition = "timestamp(0) default current_timestamp")
     private LocalDateTime voteDate;
 

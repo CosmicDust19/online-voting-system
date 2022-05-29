@@ -30,6 +30,16 @@ public class ElectionController {
         return buildResponseEntity(electionService.getAll());
     }
 
+    @GetMapping("/get/id")
+    public ResponseEntity<ApiResult> getById(@Exists(column = "eid", table = "election") @RequestParam Integer eid) {
+        return buildResponseEntity(electionService.getById(eid));
+    }
+
+    @GetMapping("/get/admin-responsibilities")
+    public ResponseEntity<ApiResult> getAdminResponsibilities(@Exists(column = "uid", table = "admin") @RequestParam Integer adminId) {
+        return buildResponseEntity(electionService.getAdminResponsibilities(adminId));
+    }
+
     @PostMapping("/create")
     public ResponseEntity<ApiResult> create(@Validated(OnCreate.class) @RequestBody ElectionDto electionDto) {
         return buildResponseEntity(electionService.save(electionDto));

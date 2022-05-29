@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PreDestroy;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -19,7 +19,7 @@ import java.sql.SQLException;
 public class MySQLConfig {
 
     @Getter
-    private static DataSource dataSource;
+    private static Connection connection;
 
     @Getter
     private static String mysqlHome;
@@ -55,7 +55,7 @@ public class MySQLConfig {
     @SneakyThrows(SQLException.class)
     public static void setMySQLHomePath() {
         if (!running) return;
-        ResultSet res = dataSource.getConnection().createStatement().executeQuery("select @@datadir");
+        ResultSet res = connection.createStatement().executeQuery("select @@datadir");
         if (!res.next()) return;
         mysqlHome = res.getString(1).substring(0, res.getString(1).lastIndexOf("mysql") + 6);
         String oldPath = PropertiesUtils.updateElement("mysql.properties", "mysql.home-path", mysqlHome);
@@ -63,8 +63,8 @@ public class MySQLConfig {
     }
 
     @Autowired
-    public void setDataSource(DataSource dataSource) {
-        MySQLConfig.dataSource = dataSource;
+    public void setConnection(Connection connection) {
+        MySQLConfig.connection = connection;
     }
 
 }

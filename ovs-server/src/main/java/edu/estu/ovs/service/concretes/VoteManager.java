@@ -4,8 +4,11 @@ import edu.estu.ovs.core.results.abstracts.ApiResult;
 import edu.estu.ovs.core.results.success.ApiSuccessDataResult;
 import edu.estu.ovs.core.results.success.ApiSuccessResult;
 import edu.estu.ovs.core.utilities.Msg;
+import edu.estu.ovs.dataaccess.abstracts.ElectionDao;
 import edu.estu.ovs.dataaccess.abstracts.VoteDao;
 import edu.estu.ovs.models.dtos.VoteDto;
+import edu.estu.ovs.models.entities.Candidate;
+import edu.estu.ovs.models.entities.Election;
 import edu.estu.ovs.models.entities.Vote;
 import edu.estu.ovs.service.abstracts.VoteService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -22,6 +28,7 @@ import javax.transaction.Transactional;
 public class VoteManager implements VoteService {
 
     private final VoteDao voteDao;
+    private final ElectionDao electionDao;
     private final ModelMapper modelMapper;
 
     @Override
@@ -55,7 +62,20 @@ public class VoteManager implements VoteService {
     }
 
     @Override
-    public ApiResult vote(VoteDto voteDto) {
+    public ApiResult getVoteCountByElectionAndCandidate(Integer eid, Integer candId) {
+        return new ApiSuccessDataResult<>(voteDao.countByElection_EidAndCandidate_Uid(eid, candId));
+    }
+
+    @Override
+    public ApiResult getVoteCountsByElection(Integer eid) {
+        Election election = electionDao.findById(eid).orElseThrow(EntityNotFoundException::new);
+        Map<Integer, Integer> candVoteMap = election.getAttenders().stream()
+                .collect(Collectors.toMap(Candidate::getUid, cand -> voteDao.countByElection_EidAndCandidate_Uid(eid, cand.getUid())));
+        return new ApiSuccessDataResult<>(candVoteMap);
+    }
+
+    @Override
+    public ApiResult cast(VoteDto voteDto) {
         return new ApiSuccessDataResult<>(HttpStatus.CREATED, Msg.SAVED, voteDao.save(modelMapper.map(voteDto, Vote.class)));
     }
 

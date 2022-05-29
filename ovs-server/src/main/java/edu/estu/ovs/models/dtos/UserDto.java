@@ -25,7 +25,6 @@ public abstract class UserDto {
     @NotNull(message = Msg.REQUIRED, groups = {OnUpdate.class})
     protected Integer uid;
 
-    @Exists(column = "email", table = "user", groups = {OnUpdate.class})
     @NotExists(column = "email", table = "user", groups = {OnCreate.class})
     @NotBlank(message = Msg.REQUIRED, groups = {OnUpdate.class, OnCreate.class})
     @Pattern(regexp = Constants.RegExp.EMAIL, message = Msg.PATTERN, groups = {OnUpdate.class, OnCreate.class})

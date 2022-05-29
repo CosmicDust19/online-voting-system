@@ -45,18 +45,31 @@ public class VoteController {
     }
 
     @GetMapping("/get/election_candidate")
-    public ResponseEntity<ApiResult> getByElectionAndCandidate(@RequestParam Integer eid, @RequestParam Integer candId) {
+    public ResponseEntity<ApiResult> getByElectionAndCandidate(@RequestParam @Exists(column = "eid", table = "election") Integer eid,
+                                                               @RequestParam @Exists(column = "uid", table = "candidate") Integer candId) {
         return buildResponseEntity(voteService.getByElectionAndCandidate(eid, candId));
     }
 
     @GetMapping("/get/election_voter")
-    public ResponseEntity<ApiResult> getByElectionAndVoter(@RequestParam Integer eid, @RequestParam Integer voterId) {
+    public ResponseEntity<ApiResult> getByElectionAndVoter(@RequestParam @Exists(column = "eid", table = "election") Integer eid,
+                                                           @RequestParam @Exists(column = "uid", table = "voter") Integer voterId) {
         return buildResponseEntity(voteService.getByElectionAndVoter(eid, voterId));
     }
 
-    @PostMapping("/vote")
-    public ResponseEntity<ApiResult> vote(@Validated(OnCreate.class) @RequestBody VoteDto voteDto) {
-        return buildResponseEntity(voteService.vote(voteDto));
+    @GetMapping("/get/vote_count/election_candidate")
+    public ResponseEntity<ApiResult> getVoteCountByElectionAndCandidate(@RequestParam @Exists(column = "eid", table = "election") Integer eid,
+                                                                        @RequestParam @Exists(column = "uid", table = "candidate") Integer candId) {
+        return buildResponseEntity(voteService.getVoteCountByElectionAndCandidate(eid, candId));
+    }
+
+    @GetMapping("/get/vote_counts/election")
+    public ResponseEntity<ApiResult> getVoteCountsByElection(@RequestParam @Exists(column = "eid", table = "election") Integer eid) {
+        return buildResponseEntity(voteService.getVoteCountsByElection(eid));
+    }
+
+    @PostMapping("/cast")
+    public ResponseEntity<ApiResult> cast(@Validated(OnCreate.class) @RequestBody VoteDto voteDto) {
+        return buildResponseEntity(voteService.cast(voteDto));
     }
 
     @DeleteMapping("/delete")

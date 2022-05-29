@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 public interface ElectionService {
     ApiResult getAll();
 
+    ApiResult getById(Integer eid);
+
+    ApiResult getAdminResponsibilities(Integer adminId);
+
     ApiResult save(ElectionDto electionDto);
 
     ApiResult addAttender(Integer candId, Integer eid);

@@ -50,21 +50,23 @@ public class Election {
     private LocalDateTime end;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "creation_date", nullable = false, updatable = false, columnDefinition = "date")
+    @Column(name = "creation_date", nullable = false, updatable = false, columnDefinition = "date default current_date")
     private LocalDate creationDate;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "election_attenders",
             joinColumns = @JoinColumn(name = "election_id", nullable = false), foreignKey = @ForeignKey(name = "fk_election_attenders_election_id"),
-            inverseJoinColumns = @JoinColumn(name = "candidate_id", nullable = false), inverseForeignKey = @ForeignKey(name = "fk_election_attenders_candidate_id")
+            inverseJoinColumns = @JoinColumn(name = "candidate_id", nullable = false), inverseForeignKey = @ForeignKey(name = "fk_election_attenders_candidate_id"),
+            uniqueConstraints = @UniqueConstraint(name = "uk_election_attenders_election_id_candidate_id", columnNames = {"election_id", "candidate_id"})
     )
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Candidate> attenders;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "election_executives",
             joinColumns = @JoinColumn(name = "election_id", nullable = false), foreignKey = @ForeignKey(name = "fk_election_executives_election_id"),
-            inverseJoinColumns = @JoinColumn(name = "admin_id", nullable = false), inverseForeignKey = @ForeignKey(name = "fk_election_executives_admin_id")
+            inverseJoinColumns = @JoinColumn(name = "admin_id", nullable = false), inverseForeignKey = @ForeignKey(name = "fk_election_executives_admin_id"),
+            uniqueConstraints = @UniqueConstraint(name = "uk_election_executives_election_id_admin_id", columnNames = {"election_id", "admin_id"})
     )
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Admin> executives;

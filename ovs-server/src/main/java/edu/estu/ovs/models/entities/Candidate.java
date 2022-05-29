@@ -32,7 +32,6 @@ public class Candidate extends User {
     private String address;
 
     @Column(name = "nationality_id", nullable = false, length = Constants.MaxLength.NAT_ID)
-    @JsonIgnore
     private String natId;
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)

@@ -18,7 +18,11 @@ public interface VoteService {
 
     ApiResult getByElectionAndCandidate(Integer eid, Integer candId);
 
-    ApiResult vote(VoteDto voteDto);
+    ApiResult getVoteCountByElectionAndCandidate(Integer eid, Integer candId);
+
+    ApiResult getVoteCountsByElection(Integer eid);
+
+    ApiResult cast(VoteDto voteDto);
 
     ApiResult delete(Integer voteId);
 }

@@ -91,6 +91,11 @@ public class User {
         this.creationDate = LocalDate.now();
     }
 
+    @PreUpdate
+    public void onPreUpdate() {
+        this.enabled = true;
+    }
+
     @JsonIgnore
     public List<SimpleGrantedAuthority> getGrantedAuthorities() {
         if (this.authorities == null) return new ArrayList<>();
