@@ -13,7 +13,6 @@ export default function UserSave({role}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state?.user.userProps.user);
-    role = user ? user.authorities[0].name : role;
 
     const userValues = !user ? null : {
         uid: user.uid,
@@ -54,15 +53,15 @@ export default function UserSave({role}) {
     }
 
     const formik = useFormik({
-        initialValues: user ? userValues : initialValues,
-        onSubmit: user ? onUpdate : onSignUp,
+        initialValues: !role ? userValues : initialValues,
+        onSubmit: !role ? onUpdate : onSignUp,
         enableReinitialize: true
     });
 
     return (
         <div className={"s-form"}>
             <form onSubmit={formik.handleSubmit} className={"container-glass rounded"}>
-                <h3>{user ? "Account" : "Sign Up"}</h3>
+                <h3>{!role ? "Account" : "Sign Up"}</h3>
                 <label htmlFor="email">Email</label>
                 <input id="email" type="email" name={"email"} onChange={formik.handleChange}
                        value={formik.values.email} placeholder="Email" required/>
@@ -90,7 +89,7 @@ export default function UserSave({role}) {
                         <input id="nationalityId" type="number" name={"nationalityId"} onChange={formik.handleChange}
                                value={formik.values.nationalityId} placeholder="Nationality ID" required/>
                     </div> : null}
-                <button type="submit">{user ? "Save Changes" : "Sign Up"}</button>
+                <button type="submit">{!role ? "Save Changes" : "Sign Up"}</button>
             </form>
             <div style={{height: role === "ROLE_CANDIDATE" ? isLoggedIn() ? 1123 : 1323 : 1110}} className="background">
                 <div className="shape"/>
