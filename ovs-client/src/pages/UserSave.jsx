@@ -22,7 +22,9 @@ export default function UserSave({role}) {
         firstName: user.fname,
         lastName: user.lname,
         middleName: user.mname ? user.mname : "",
-        birthDate: user.birthDate
+        birthDate: user.birthDate,
+        address: user.address,
+        nationalityId: user.natId
     }
 
     const initialValues = {
