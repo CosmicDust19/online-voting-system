@@ -1,7 +1,7 @@
 ## HOW TO RUN
 
 - Database configurations:
-  - Be sure that MySQL (or Xampp) installed on your computer (MySQL5 InnoDB Dialect used in this project).
+  - Be sure that MySQL (Xampp is recommended) installed on your computer (MySQL5 InnoDB Dialect used in this project).
   - Mysql home path will be determined and started automatically after first run, but it ***requires to mysql running*** at first.
   - Default database username is "root" and password is empty (MySQL defaults). Change if your username and password are different (from ovs-server/src/main/resources/application.properties).
 - Java configurations:
