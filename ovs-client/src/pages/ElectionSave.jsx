@@ -75,13 +75,13 @@ export default function ElectionSave() {
                 <h3>{!election.eid ? "Create" : "Update"} Election</h3>
                 <label htmlFor="title">Title</label>
                 <input id="title" type="text" name={"title"} onChange={formik.handleChange}
-                       value={formik.values.title} placeholder="Title.."/>
+                       value={formik.values.title} placeholder="Title.." required/>
                 <label htmlFor="startDate">Start Date</label>
                 <input id="startDate" type="datetime-local" name={"startDate"} onChange={formik.handleChange}
-                       value={formik.values.startDate} placeholder="Start Date.."/>
+                       value={formik.values.startDate} placeholder="Start Date.." required/>
                 <label htmlFor="endDate">End Date</label>
                 <input id="endDate" type="datetime-local" name={"endDate"} onChange={formik.handleChange}
-                       value={formik.values.endDate} placeholder="End Date.."/>
+                       value={formik.values.endDate} placeholder="End Date.." required/>
                 <button type={"submit"}>{election.eid ? "Save Changes" : "Create"}</button>
                 {election.eid ? <button type={"button"} className={"danger"} onClick={handleDelete}>Delete</button> : null}
             </form>

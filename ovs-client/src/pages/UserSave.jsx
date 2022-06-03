@@ -46,7 +46,7 @@ export default function UserSave({role}) {
 
     const onUpdate = (values) => {
         values = {...values, middleName: values.middleName.trim() === "" ? undefined : values.middleName}
-        getUserServiceByRole(role).update(values).then(result => {
+        getUserServiceByRole(user.authorities[0].name).update(values).then(result => {
             dispatch(syncUser(result.data.data))
             toast("Updated")
         }).catch(handleCatch)
